@@ -1,0 +1,21 @@
+{
+  "suggest.timeout": 10000,
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "vue",
+    "json",
+    "elixir",
+    "eelixir"
+  ],
+
+  "diagnostic.errorSign": "•",
+  "diagnostic.warningSign": "•",
+  "diagnostic.infoSign": "•",
+
+  "python.jediEnabled": false, 
+  "python.formatting.provider": "black"
+}
