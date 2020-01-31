@@ -3,7 +3,7 @@
 " └─────────────┘
 call plug#begin('~/.vim/plugged')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'liuchengxu/vista.vim'
+  " Plug 'liuchengxu/vista.vim'
   Plug 'w0rp/ale'
   Plug 'puremourning/vimspector'
 
@@ -11,8 +11,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'Shougo/echodoc.vim'
 
   " Colorscheme
-  " Plug 'jmoggee/mirage.vim'
-  Plug 'morhetz/gruvbox'
+  Plug 'gruvbox-community/gruvbox'
 
   " Pretty statusline
   Plug 'vim-airline/vim-airline'
@@ -72,12 +71,26 @@ call plug#end()
 set termguicolors
 set background=dark
 
-" let g:mirage_terminal_italics=1
-" colorscheme mirage 
-
 let g:gruvbox_italic=1
 let g:gruvbox_italicize_comments=1
 colorscheme gruvbox
+
+if has('nvim')
+    function! FloatingFZF()
+        let width = float2nr(&columns * 0.85)
+        let height = float2nr(&lines * 0.70)
+        let opts = { 'relative': 'editor',
+                    \ 'row': (&lines - height) / 2,
+                    \ 'col': (&columns - width) / 2,
+                    \ 'width': width,
+                    \ 'height': height,
+                    \ 'style': 'minimal'}
+
+        let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    endfunction
+
+    let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+endif
 
 " ┌────────────┐
 " │  General   │
@@ -97,8 +110,8 @@ autocmd FileType qf setlocal nonumber norelativenumber
 " Automatically re-read file if changed outside vim
 set autoread
 
-" Disable the mouse
-set mouse=
+" Enable the mouse
+set mouse=a
 
 " Use spaces for tabs
 set expandtab
@@ -230,7 +243,8 @@ autocmd FileType vue syntax sync fromstart
 " Airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'gruvbox'
+" let g:airline_theme = 'gruvbox'
+
 " Don't display buffers in tabline
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
